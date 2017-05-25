@@ -51,9 +51,6 @@ router.post('/api/register', (req, res) => {
 })
 
 router.post('/api/post', auth, sendPost, (req, res) => {
-
-    console.log("aefef");
-
     let username = req.session.user.username;
     res.redirect("/page/" + username);
 });
