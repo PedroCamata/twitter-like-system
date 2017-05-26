@@ -35,7 +35,9 @@ router.get('/logout', (req, res, user) => {
     res.redirect("/page/" + username);
 });
 
-
+router.get('/register', (req, res, user) => {
+    res.render('register');
+});
 
 router.post('/api/register', (req, res) => {
     console.log(req.body);
@@ -57,8 +59,9 @@ router.post('/api/register', (req, res) => {
         if (err) {
             console.log(err);
             return res.status(406).send('Error: ' + err);
+        } else {
+            res.redirect('/login');
         }
-        res.send("Cannot register");
     });
 })
 
@@ -67,16 +70,21 @@ router.post('/api/post', auth, sendPost, (req, res) => {
     res.redirect("/page/" + username);
 });
 
+router.post('/api/page', (req, res) => {
+    let usernameString = req.body.search_user;
+    res.redirect("/page/" + usernameString);
+});
+
 router.get('/page/:username', pageValidate, getPosts, (req, res) => {
 
-    let user = res.user;
+    let page_user = res.user;
     let isOwner = false;
     let isLogged = true;
-
+    let user = null;
 
     if (req.session.user) {
-        let logged_username = req.session.user.username;
-        if (user.username == logged_username) {
+        user = req.session.user;
+        if (page_user.username == user.username) {
             isOwner = true;
         }
     } else {
@@ -87,7 +95,7 @@ router.get('/page/:username', pageValidate, getPosts, (req, res) => {
 
 
     //res.send(posts);
-    res.render('page', { posts, user, isLogged, isOwner });
+    res.render('page', { posts, page_user, isLogged, isOwner, user });
 });
 
 module.exports = router;

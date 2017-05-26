@@ -2,7 +2,7 @@
 <html lang='en'>
     <head>
         <meta charset='utf-8'>
-        <title>@PedroCamata</title>
+        <title>@<%= page_user.username %></title>
         <meta name='description' content=''>
         <meta name='author' content='Pedro Camata Andreon'>
 
@@ -25,13 +25,17 @@
     <body>
         <div id="navbar" class="row">
             <div class="container">
-                <% if(!isLogged) {%>
-                    <a class="login" href="/login">Login</a>
+                <% if(!isLogged) { %>
+                    <a class="left-side" href="/login">Login</a>
                 <% } else { %>
-                    <a class="login" href="/logout">Logout</a>
+                    <a class="left-side" href="/page/<%= user.username %>">Home</a>
+                    <a class="right-side" href="/logout">Logout</a>
                 <% } %>
                 <span class="search">
-                    <input type="search" placeholder="Buscar">
+                    <form method="POST" action="/api/page" >
+                        <input type="search" name="search_user" placeholder="Buscar"/>
+                        <input type="submit" style="display: none"/>
+                    </form>
                 </span>
             </div>
         </div>
@@ -40,8 +44,8 @@
             <div class="container">
 
                 <div class="twelve columns">
-                    <h1>@<%= user.username %></h1>
-                    <h2><%= user.firstname + " " + user.lastname%></h2>
+                    <h1>@<%= page_user.username %></h1>
+                    <h2><%= page_user.firstname + " " + page_user.lastname%></h2>
                 </div>
             </div>
         </div>
@@ -60,14 +64,14 @@
             <% } %>
 
 
-            <h5 class="row post-head">Posts from @PedroCamata</h5>
+            <h5 class="row post-head">Posts from @<%= page_user.username %></h5>
 
             <div class="row">
                 <% for (let post of posts) { %>
                 <post class="twelve columns">
                     <div class="twelve columns header">
                         <span class="username">
-                            @<%= user.username %>
+                            @<%= page_user.username %>
                         </span>
                         <span class="date">
                             <%= post.date.toLocaleString() %>

@@ -11,21 +11,36 @@ body {
     background-color: #fff;
     border-bottom: solid 1px #000;
     padding: 10px;
+
+    text-align: left;
 }
 
-#navbar .login {
+#navbar .left-side {
     font-weight: bold;
     line-height: 35px;
+    float: left;
+}
+
+#navbar .right-side {
+    font-weight: bold;
+    line-height: 35px;
+    float: right;
+}
+
+#navbar form {
+    margin: 0;
 }
 
 input[type=search] {
     margin-bottom: 0px;
     border: solid 1px #000;
+    width: 100%;
 }
 
 #navbar .search {
-    text-align: right;
-    float: right;
+    display: inline-block;
+    width: 60%;
+    margin: 0 0 0 2.5%;
 }
 
 /* Page head */
@@ -63,14 +78,9 @@ input[type=search] {
     text-align: center;
 }
 
-
 /* Post css */
-post:first-child {
-    margin-top: 0px;
-}
-
 post {
-    border-radius: 1rem;    
+    border-radius: 1rem;
     background-color: #fff;
     border: solid 1px #000;
     padding: 10px 20px 20px 20px;
@@ -88,4 +98,12 @@ post .username {
 
 post .date {
     float: right;
+}
+
+post:first-child {
+    margin-top: 0px;
+}
+
+post:last-child {
+    margin-bottom: 50px;
 }
