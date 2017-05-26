@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 module.exports = (req, res, next) => {
 
-    let username = req.body.username;
+    let username = req.params.username;
 
     User.findOne({ 'username': username }, function (err, user) {
         if (err) return handleError(err);

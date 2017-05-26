@@ -1,3 +1,86 @@
-<div>
-    Hello this is your friend
-</div>
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>@PedroCamata</title>
+        <meta name='description' content=''>
+        <meta name='author' content='Pedro Camata Andreon'>
+
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+        <!-- Fonts -->
+        <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+        <!-- Skeleton -->
+        <link rel='stylesheet' href='../vendor/Skeleton-2.0.4/normalize.css'>
+        <link rel='stylesheet' href='../vendor/Skeleton-2.0.4/skeleton.css'>
+
+        <!-- Custom -->
+        <link rel='stylesheet' href='../css/page.css'>
+
+        <!-- Favicon 
+<link rel='icon' type='image/png' href='../img/'>-->
+    </head>
+
+    <body>
+        <div id="navbar" class="row">
+            <div class="container">
+                <% if(!isLogged) {%>
+                    <a class="login" href="/login">Login</a>
+                <% } else { %>
+                    <a class="login" href="/logout">Logout</a>
+                <% } %>
+                <span class="search">
+                    <input type="search" placeholder="Buscar">
+                </span>
+            </div>
+        </div>
+
+        <div id="page-head" class='row'>
+            <div class="container">
+
+                <div class="twelve columns">
+                    <h1>@<%= user.username %></h1>
+                    <h2><%= user.firstname + " " + user.lastname%></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class='container'>
+
+            <% if(isOwner) { %>
+                <div class="row send-box">
+                    <div class="twelve columns">
+                        <form method="POST" action="/api/post">
+                            <textarea class="msg-textarea" name="msg" placeholder="What are you thinking?"></textarea>
+                            <button class="button-primary" type="submit">Post</button>
+                        </form>
+                    </div>
+                </div>
+            <% } %>
+
+
+            <h5 class="row post-head">Posts from @PedroCamata</h5>
+
+            <div class="row">
+                <% for (let post of posts) { %>
+                <post class="twelve columns">
+                    <div class="twelve columns header">
+                        <span class="username">
+                            @<%= user.username %>
+                        </span>
+                        <span class="date">
+                            <%= post.date.toLocaleString() %>
+                        </span>
+                    </div>
+                    <div class="twelve columns">
+                        <%= post.msg %>
+                    </div>
+                </post>
+
+                <% } %>
+            </div>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Login Page</title>
+    <meta name='description' content=''>
+    <meta name='author' content='Pedro Camata Andreon'>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+    <!-- Skeleton -->
+    <link rel='stylesheet' href='../vendor/Skeleton-2.0.4/normalize.css'>
+    <link rel='stylesheet' href='../vendor/Skeleton-2.0.4/skeleton.css'>
+
+    <!-- Custom -->
+    <link rel='stylesheet' href='../css/login.css'>
+
+    <!-- Favicon -->
+    <link rel='icon' type='image/png' href='../img/favicon.png'>
+</head>
+
+<body>
+    <div class='container'>
+        <div class='row'>
+            <div id='login-box' class='four columns offset-by-four'>
+                <form action='http://localhost:3000/api/login' method='post'>
+                    <h4>Login</h4>
+
+                    <div class='twelve columns'>
+                        <input class='u-full-width' name='email' type='email' placeholder='Email' id='email-input'>
+                    </div>
+
+                    <div class='twelve columns'>
+                        <input class='u-full-width' name='password' type='password' placeholder='Password' id='pass-input'>
+                    </div>
+
+                    <div class='twelve columns'>
+                        <input class='u-full-width button-primary' type='submit' id='pass-input' value='Login'>
+                    </div>
+
+                    <% if(msg) { %>
+                        <div class='twelve columns msg'>
+                            <pre><code><%= msg %></code></pre>
+                        </div>
+                    <% } %>
+
+                    <div class='more-options'>
+                        <div><a href='/register'>Register</a></div>
+                        <div><a href='http://www.getskeleton.com'>Forgot my password</a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

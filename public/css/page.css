@@ -13,13 +13,14 @@ body {
     padding: 10px;
 }
 
-#navbar .logo {
+#navbar .login {
     font-weight: bold;
     line-height: 35px;
 }
 
 input[type=search] {
     margin-bottom: 0px;
+    border: solid 1px #000;
 }
 
 #navbar .search {
