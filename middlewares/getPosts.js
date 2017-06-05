@@ -6,7 +6,22 @@ module.exports = (req, res, next) => {
 
     let username = req.params.username;
 
-    if(username == 'all') {
+    if(res.isHashtag) {
+
+        // Hashtag posts
+        let query = "#" + username.substring(2) + "";
+
+        Post.find({"msg": new RegExp(query)}).sort({date: -1}).exec((err, posts) => {
+            if (err) return handleError(err);
+
+            if(posts) {
+                res.posts = posts;
+                next();
+            }
+        });
+
+    } else if(username == 'all') {
+        // All Posts
 
         Post.find({}).sort({date: -1}).exec((err, posts) => {
             if (err) return handleError(err);
@@ -18,6 +33,7 @@ module.exports = (req, res, next) => {
         });
 
     } else {
+        // User Posts
         Post.find({ 'username': username }).sort({date: -1}).exec((err, posts) => {
             if (err) return handleError(err);
 

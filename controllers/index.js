@@ -71,7 +71,8 @@ router.post('/api/post', auth, sendPost, (req, res) => {
 });
 
 router.post('/api/page', (req, res) => {
-    let usernameString = req.body.search_user;
+    let usernameString = req.body.search_user.replace("#", "H_");
+
     res.redirect("/page/" + usernameString);
 });
 
