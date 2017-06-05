@@ -27,7 +27,9 @@
             <div class="container">
                 <% if(!isLogged) { %>
                     <a class="left-side" href="/login">Login</a>
+                    
                 <% } else { %>
+                    <a class="left-side" href="/page/all">Feed</a>
                     <a class="left-side" href="/page/<%= user.username %>">Home</a>
                     <a class="right-side" href="/logout">Logout</a>
                 <% } %>
@@ -56,7 +58,7 @@
                 <div class="row send-box">
                     <div class="twelve columns">
                         <form method="POST" action="/api/post">
-                            <textarea class="msg-textarea" name="msg" placeholder="What are you thinking?"></textarea>
+                            <textarea class="msg-textarea" name="msg" placeholder="What are you thinking?" maxlength="140" rows="4"></textarea>
                             <button class="button-primary" type="submit">Post</button>
                         </form>
                     </div>
@@ -77,7 +79,7 @@
                             <%= post.date.toLocaleString() %>
                         </span>
                     </div>
-                    <div class="twelve columns">
+                    <div class="twelve columns msg">
                         <%= post.msg %>
                     </div>
                 </post>

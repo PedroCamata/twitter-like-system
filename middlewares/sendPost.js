@@ -4,8 +4,15 @@ const Post = require('../models/Post');
 
 module.exports = (req, res, next) => {
 
-    let username = req.session.user.username;
     let msg = req.body.msg;
+    if(msg.length > 140) {
+        return res.status(406).send('Error: Message has more than 140 characters');
+    }
+
+    let username = req.session.user.username;
+    if(!username) {
+        return res.status(406).send('Error: You are not loggin');
+    }
 
     let newPost = new Post();
     newPost.username = username;
