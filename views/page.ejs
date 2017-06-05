@@ -25,11 +25,11 @@
     <body>
         <div id="navbar" class="row">
             <div class="container">
+            <a class="left-side" href="/page/all">Feed</a>
                 <% if(!isLogged) { %>
                     <a class="left-side" href="/login">Login</a>
                     
                 <% } else { %>
-                    <a class="left-side" href="/page/all">Feed</a>
                     <a class="left-side" href="/page/<%= user.username %>">Home</a>
                     <a class="right-side" href="/logout">Logout</a>
                 <% } %>
@@ -72,9 +72,9 @@
                 <% for (let post of posts) { %>
                 <post class="twelve columns">
                     <div class="twelve columns header">
-                        <span class="username">
-                            @<%= page_user.username %>
-                        </span>
+                        <a class="username" href="/page/<%= post.username %>">
+                            @<%= post.username %>
+                        </a>
                         <span class="date">
                             <%= post.date.toLocaleString() %>
                         </span>

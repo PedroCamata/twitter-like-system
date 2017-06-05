@@ -7,7 +7,13 @@ module.exports = (req, res, next) => {
     let username = req.params.username;
 
     if (username == 'all') {
-        res.user = username;
+        let user = {};
+        user.firstname = "All posts";
+        user.lastname = "of the site";
+        user.username = "all";
+
+        res.user = user;
+
         next();
     } else {
         User.findOne({ 'username': username }, function (err, user) {

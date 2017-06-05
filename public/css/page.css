@@ -99,6 +99,11 @@ post .header {
 
 post .username {
     float: left;
+    text-decoration: none;
+}
+
+post .username:hover {
+    text-decoration: underline;
 }
 
 post .date {

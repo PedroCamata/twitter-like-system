@@ -93,7 +93,6 @@ router.get('/page/:username', pageValidate, getPosts, (req, res) => {
 
     let posts = res.posts;
 
-
     //res.send(posts);
     res.render('page', { posts, page_user, isLogged, isOwner, user });
 });
