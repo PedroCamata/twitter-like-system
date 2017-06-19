@@ -47,7 +47,11 @@
 
                 <div class="twelve columns">
                     <h1>@<%= page_user.username %></h1>
-                    <h2><%= page_user.firstname + " " + page_user.lastname%></h2>
+                    <h2><%= page_user.firstname + " " + page_user.lastname %>
+                        <% if(isOwner) { %>
+                            <a href="/edit">Edit</a>
+                        <% } %>
+                    </h2>
                 </div>
             </div>
         </div>

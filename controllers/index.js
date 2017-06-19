@@ -40,13 +40,14 @@ router.get('/register', (req, res, user) => {
 });
 
 router.post('/api/register', (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
 
     let username = req.body.username;
     let email = req.body.email;
     let password = req.body.password;
     let firstname = req.body.firstname;
     let lastname = req.body.lastname;
+    let birth = req.body.birth;
 
     let newUser = new User();
     newUser.username = username;
@@ -54,6 +55,7 @@ router.post('/api/register', (req, res) => {
     newUser.password = password;
     newUser.firstname = firstname;
     newUser.lastname = lastname;
+    newUser.birth = birth;
 
     newUser.save((err, savedUser) => {
         if (err) {
@@ -64,6 +66,48 @@ router.post('/api/register', (req, res) => {
         }
     });
 })
+
+router.get('/edit', auth, (req, res) => {
+    console.log(req.session.user);
+    let user = req.session.user;
+
+    res.render("edit", { user });
+})
+
+router.post('/api/edit', (req, res) => {
+    console.log(req.body);
+
+    console.log(req.session.user);
+
+    //let username = req.body.username;
+    let email = req.body.email;
+    let password = req.body.password;
+    let firstname = req.body.firstname;
+    let lastname = req.body.lastname;
+    let birth = req.body.birth;
+
+    let actualUsername = req.session.user.username;
+
+    User.findOne({ username: actualUsername }, function (err, doc) {
+        //doc.username = username;
+        doc.email = email;
+        doc.password = password;
+        doc.firstname = firstname;
+        doc.lastname = lastname;
+        doc.birth = birth;
+
+        doc.save();
+        res.redirect("/page/" + actualUsername);
+    });
+
+    //req.session.user.username = username;
+    req.session.user.email = email;
+    req.session.user.password = password;
+    req.session.user.firstname = firstname;
+    req.session.user.lastname = lastname;
+    req.session.user.birth = birth;
+})
+
 
 router.post('/api/post', auth, sendPost, (req, res) => {
     let username = req.session.user.username;

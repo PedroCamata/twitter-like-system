@@ -51,6 +51,14 @@ input[type=search] {
     padding-top: 10px;
 }
 
+#page-head h2 a {
+    text-decoration: none;
+    font-size: 20px;
+}
+#page-head h2 a:hover {
+    text-decoration: underline;
+}
+
 /* send-box */
 .send-box {
     margin: 20px 0px 12px 0px;

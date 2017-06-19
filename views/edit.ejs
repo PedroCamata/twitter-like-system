@@ -27,54 +27,54 @@
     <div class='container'>
         <div class='row'>
             <div id="login-box" class='four columns offset-by-four'>
-                <form action="http://localhost:3000/api/register" method="post">
-                    <h4>Register</h4>
-
+                <form action="http://localhost:3000/api/edit" method="post">
+                    <h4>Edit Profile</h4>
+                    
                     <div class="row">
                         <div class='six columns'>
                             <label>Name</label>
-                            <input class='u-full-width' name='firstname' type='text' placeholder='Firtname' id='firstname-input'>
+                            <input class='u-full-width' name='firstname' type='text' placeholder='Firtname' id='firstname-input' value="<%= user.firstname %>">
                         </div>
 
                         <div class='six columns'>
                             <label><br></label>
-                            <input class='u-full-width' name='lastname' type='text' placeholder='LastName' id='lastname-input'>
+                            <input class='u-full-width' name='lastname' type='text' placeholder='LastName' id='lastname-input' value="<%= user.lastname %>">
                         </div>
                     </div>
 
                     <div class='twelve columns'>
                         <label>Birthday</label>
-                        <input class='u-full-width' name='birth' type='date' id='date-input'>
+                        <input class='u-full-width' name='birth' type='date' id='date-input' value="<%= user.birth.toLocaleString().substring(0,10) %>">
                     </div>
 
-                    <div class='twelve columns'>
+                    <!--<div class='twelve columns'>
                         <label>Username</label>
-                        <input class='u-full-width' name='username' type='text' placeholder='Username' id='username-input'>
-                    </div>
+                        <input class='u-full-width' name='username' type='text' placeholder='Username' id='username-input' value="<%= user.username %>">
+                    </div>-->
                     
                     <div class='twelve columns'>
                         <label>Email</label>
-                        <input class='u-full-width' name='email' type='email' placeholder='Email' id='email-input'>
+                        <input class='u-full-width' name='email' type='email' placeholder='Email' id='email-input' value="<%= user.email %>">
                     </div>
 
                     <div>
                         <div class='six columns'>
                             <label>Password</label>
-                            <input class='u-full-width' name='password' type='password' placeholder='Password' id='pass-input'>
+                            <input class='u-full-width' name='password' type='password' placeholder='Password' id='pass-input' value="<%= user.password %>">
                         </div>
                         <div class='six columns'>
                             <label>Confirm Password</label>
-                            <input class='u-full-width' type='password' placeholder='Password' id='cpass-input'>
+                            <input class='u-full-width' type='password' placeholder='Password' id='cpass-input' value="<%= user.password %>">
                         </div>
                     </div>
 
                     <div class='twelve columns'>
 
-                        <input class='u-full-width button-primary' type='submit' id='pass-input' value='Register'>
+                        <input class='u-full-width button-primary' type='submit' id='pass-input' value='Save'>
                     </div>
 
                     <div class="row more-options column">
-                        <div><a href='/login'>I already have an account</a></div>
+                        <div><a href='/page/<%= user.username %>'>Return</a></div>
                     </div>
                 </form>
             </div>
